@@ -72,7 +72,7 @@ int sensorValue = analogRead(A0);
     float resistance;
     float temperature;
     int B=3975; 
-
+/* doing the maths for to turn to celsus */
  resistance=(float)(1023-sensorValue)*10000/sensorValue; //get the resistance of the sensor;
     temperature=1/(log(resistance/10000)/B+1/298.15)-273.15;//convert to temperature via datasheet&nbsp;;
     delay(1000);
@@ -82,6 +82,7 @@ int sensorValue = analogRead(A0);
 
      
  lcd.print(temperature);
+ /* read the temprature and if btween 13 and 27 its safe for a being used insulin pen other wise it gives warning and screen turns red */
 
     if ((temperature >= 13 ) && (temperature <= 27))
     {
@@ -89,6 +90,7 @@ int sensorValue = analogRead(A0);
     const int colorR = 0;
     const int colorG = 255;
     const int colorB = 0;
+    /* green */
    lcd.setRGB(colorR, colorG, colorB);
     }
     else
@@ -97,6 +99,7 @@ int sensorValue = analogRead(A0);
     const int colorG = 0;
     const int colorB = 0;
    lcd.setRGB(colorR, colorG, colorB);
+   /*red*/
 
       
     lcd.print("WARNING");
